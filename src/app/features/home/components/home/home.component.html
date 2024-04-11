@@ -1,0 +1,75 @@
+<div class="container body-content">
+    <div class="container mt-5">
+        <h2 class="mb-4">Descriptions</h2>
+        <button type="button" class="btn btn-primary mb-3" (click)="openAddModal()">Add description</button>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="left-column">ID</th>
+                    <th class="center-column">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let description of descriptions">
+                    <td class="left-column ">{{description.id}}</td>
+                    <td class="center-column">{{description.details}}</td>
+                    <td class="right-column">
+                        <div ngbDropdown class="d-inline-block">
+                            <button class="btn btn-secondary btn-sm" id="actionDropdown" ngbDropdownToggle>
+                            Actions
+                            </button>
+                            <div ngbDropdownMenu aria-labelledby="actionDropdown" class="dropdown-menu">
+                            <button class="dropdown-item" (click)="openUpdateModal(description)" ngbDropdownItem>Update</button>
+                            <button class="dropdown-item text-danger" (click)="deleteDescription(description.id)" ngbDropdownItem>Delete</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <ng-template #addDescriptionModal let-modal>
+        <div class="custom-modal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title">Add description</h5>
+            </div>
+            <div class="modal-body">
+            <form>
+                <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" rows="5" [formControl]="newDescription"></textarea>
+                </div>
+            </form>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Cancel</button>
+            <button type="button" class="btn btn-primary" (click)="createDescription()" (click)="modal.close('Close click')">Save</button>
+            </div>
+        </div>
+        </div>
+    </ng-template>
+
+    <ng-template #updateDescriptionModal let-modal>
+        <div class="custom-modal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title">Update the description</h5>
+            </div>
+            <div class="modal-body">
+            <form [formGroup]="existingDescription">
+                <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" rows="5" formControlName ="details"></textarea>
+                </div>
+            </form>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Cancel</button>
+            <button type="button" class="btn btn-primary" (click)="updateDescription()" (click)="modal.close('Close click')">Save</button>
+            </div>
+        </div>
+        </div>
+    </ng-template>
+</div>

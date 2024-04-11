@@ -1,0 +1,6 @@
+{
+    "name": "local",
+    "server": {
+        "host": "http://localhost:8003/"
+    }
+}
