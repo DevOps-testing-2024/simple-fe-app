@@ -28,4 +28,4 @@ jobs:
         echo "DISPLAY=:99" >> $GITHUB_ENV
     - run: npm ci
     - run: npm run build --if-present
-    - run: npm test exit 0
+    - run: npm test --single-run=true
