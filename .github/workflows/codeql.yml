@@ -1,4 +1,4 @@
-name: "Code quality workflow"
+name: Code quality workflow
 
 on:
   push:
