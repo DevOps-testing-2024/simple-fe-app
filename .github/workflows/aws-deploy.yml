@@ -53,4 +53,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
           S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
-        run: aws s3 sync ./dist/${{ vars.FE_APP_NAME }} s3://${{ secrets.S3_BUCKET_NAME }} --delete
+        run: aws s3 sync ${{ vars.FE_APP_NAME }} s3://${{ secrets.S3_BUCKET_NAME }} --delete
