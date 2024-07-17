@@ -30,13 +30,13 @@ jobs:
       run: npm install
     - name: Build Angular app
       run: |
-        sed -i "s|\"host\": \"\"|\"host\": \"${{ var.SERVICE_HOST }}\"|" src/assets/config/app-${{ inputs.environment }}.json
+        sed -i "s|\"host\": \"\"|\"host\": \"${{ vars.SERVICE_HOST }}\"|" src/assets/config/app-${{ inputs.environment }}.json
         npm run build:${{ inputs.environment }}
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
       with:
         name: build-artifacts
-        path: dist/${{ var.FE_APP_NAME }}
+        path: dist/${{ vars.FE_APP_NAME }}
 
   deploy:
     needs: build
@@ -53,4 +53,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
           S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
-        run: aws s3 sync ./dist/${{ var.FE_APP_NAME }} s3://${{ secrets.S3_BUCKET_NAME }} --delete
+        run: aws s3 sync ./dist/${{ vars.FE_APP_NAME }} s3://${{ secrets.S3_BUCKET_NAME }} --delete
