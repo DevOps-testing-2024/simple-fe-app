@@ -1,0 +1,6 @@
+{
+    "name": "prod",
+    "server": {
+        "host": ""
+    }
+}
